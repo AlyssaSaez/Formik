@@ -1,13 +1,12 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-
 const FriendForm = props => (
   <div>
     <Formik
       initialValues={{ name: "", age: "", email: "" }}
       onSubmit={(values, actions) => {
-        props.submit(values)
+        props.submit(values);
       }}
       validate={values => {
         let errors = {};

@@ -10,7 +10,6 @@ class App extends Component {
     return (
       <div className="App">
         <Friends />
-        {/* <FriendForm addCb={obj => this.add(obj)}/> */}
       </div>
     );
   }
