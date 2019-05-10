@@ -1,6 +1,7 @@
 import React from "react";
 import "./Friends.css";
 import axios from "axios";
+import FriendForm from "./Form";
 
 export default class Friends extends React.Component {
   constructor() {
@@ -22,6 +23,19 @@ export default class Friends extends React.Component {
       })
       .catch(err => console.log(err));
   }
+  submit = values => {
+    axios
+      .post("http://localhost:5000/friends", {
+        name: values.name,
+        age: values.age,
+        email: values.email
+      })
+      .then(res => {
+        this.setState({ friends: res.data });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <div className="people-container">
@@ -35,6 +49,7 @@ export default class Friends extends React.Component {
               </div>
             );
           })}
+        <FriendForm addCb={obj => this.add(obj)} submit={this.submit} />
       </div>
     );
   }

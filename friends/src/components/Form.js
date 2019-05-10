@@ -1,15 +1,13 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-const FriendForm = () => (
+
+const FriendForm = props => (
   <div>
     <Formik
       initialValues={{ name: "", age: "", email: "" }}
       onSubmit={(values, actions) => {
-        setTimeout(() => {
-          (JSON.stringify(values, null, 2));
-          actions.setSubmitting(false);
-        }, 1000);
+        props.submit(values)
       }}
       validate={values => {
         let errors = {};
@@ -18,10 +16,8 @@ const FriendForm = () => (
         }
         return errors;
       }}
-    
-      render =
-      {props => (
-        <Form onSubmit={props.handleSubmit}>
+      render={props => (
+        <Form>
           <Field
             type="name"
             name="name"
@@ -49,7 +45,8 @@ const FriendForm = () => (
           <ErrorMessage name="email" component="div" />
           <button type="submit">Submit</button>
         </Form>
-      )} />
+      )}
+    />
   </div>
 );
 
